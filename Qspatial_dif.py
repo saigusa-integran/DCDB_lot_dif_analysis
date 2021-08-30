@@ -53,7 +53,7 @@ class GDFExraction:
         # Extract tables necessary for final output with geom to geopandas df
         def query_geo(self):
             if data[0:1] == '2':
-                query_geo = f"""SELECT lot, plan, lotplan, lac, loc, locality, parcel_typ, cover_typ, tenure ca_area_sqm, o_shape
+                query_geo = f"""SELECT lot, plan, lotplan, lac, loc, locality, parcel_typ, cover_typ, tenure, ca_area_sqm, o_shape
                 FROM dcdb.qld_dcdb_{data} WHERE plan LIKE 'RP%%' OR plan LIKE 'SP%%' OR plan LIKE 'GTP%%' OR plan LIKE 'BUP%%'
                 AND parcel_typ = 'Lot Type Parcel' AND cover_typ = 'Base' ORDER BY lotplan"""
                 gdf = gpd.GeoDataFrame.from_postgis(query_geo, engine, geom_col='o_shape')
